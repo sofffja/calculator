@@ -1,3 +1,14 @@
+let firstNumber;
+let operator;
+let secondNumber;
+
+const uiNumbers = document.querySelector('.numbers');
+for (let i = 0; i < 10; i++) {
+  const newUiNumber = document.createElement('button');
+  newUiNumber.textContent = i;
+  uiNumbers.appendChild(newUiNumber);
+}
+
 function operate(a, operator, b) {
   switch (operator) {
     case '+':
