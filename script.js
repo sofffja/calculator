@@ -24,10 +24,12 @@ numbers.addEventListener('click', (e) => {
 })
 
 operators.addEventListener('click', (e) => {
+  if (firstNumber) {
+    callOperate();
+  }
   operator = e.target.textContent;
   firstNumber = displayValue;
   displayValue = '';
-  console.log(firstNumber);
 })
 
 resultBtn.addEventListener('click', () => {
@@ -42,7 +44,7 @@ function clear() {
   displayValue = '';
   firstNumber = null;
   secondNumber = null;
-  operator = null;
+  operator = null;                   
   populateDisplay(displayValue);
 }
 
@@ -52,11 +54,15 @@ function populateDisplay(content) {
 
 function callOperate() {
   secondNumber = displayValue;
+
   if (firstNumber && operator) {
     result = operate(+firstNumber, operator, +secondNumber);
     displayValue = result;
     populateDisplay(displayValue);
+
     console.log(`${firstNumber} ${operator} ${secondNumber} = ${result}`);
+
+    operator = null;
   }
 }
 
