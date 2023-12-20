@@ -56,6 +56,11 @@ function callOperate() {
   secondNumber = displayValue;
 
   if (firstNumber && operator) {
+    if (secondNumber == 0 && operator == '/') {
+      clear();
+      populateDisplay('NO!');
+      return;
+    }
     result = operate(+firstNumber, operator, +secondNumber);
     displayValue = result;
     populateDisplay(displayValue);
