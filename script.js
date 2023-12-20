@@ -3,6 +3,7 @@ let operator;
 let secondNumber;
 let result;
 let displayValue = '';
+const displayValueLength = 23;
 
 const numbers = document.querySelector('.numbers');
 const operators = document.querySelector('.operators');
@@ -10,7 +11,7 @@ const display = document.querySelector('.display');
 const resultBtn = document.querySelector('.result');
 const clearBtn = document.querySelector('.clear');
 
-for (let i = 0; i < 10; i++) {
+for (let i = 1; i < 10; i++) {
   const newNumber = document.createElement('button');
   newNumber.textContent = i;
   numbers.appendChild(newNumber);
@@ -19,8 +20,13 @@ for (let i = 0; i < 10; i++) {
 // EVENT LISTENERS
 
 numbers.addEventListener('click', (e) => {
-  displayValue += e.target.textContent;
-  populateDisplay(displayValue)
+  if (displayValue.length < displayValueLength
+    && e.target.textContent !== '=')
+    {
+      displayValue += e.target.textContent;
+      populateDisplay(displayValue)
+    }
+  e.stopPropagation();
 })
 
 operators.addEventListener('click', (e) => {
@@ -45,7 +51,7 @@ function clear() {
   firstNumber = null;
   secondNumber = null;
   operator = null;                   
-  populateDisplay(displayValue);
+  populateDisplay('0');
 }
 
 function populateDisplay(content) {
@@ -77,7 +83,7 @@ function operate(a, operator, b) {
       return add(a, b);
     case '-':
       return subtract(a, b);
-    case '*':
+    case 'x':
       return multiply(a, b);
     case '/':
       return divide(a, b);
