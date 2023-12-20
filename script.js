@@ -4,6 +4,7 @@ let secondNumber;
 let result;
 let displayValue = '';
 const displayValueLength = 19;
+let dotEnabled = true;
 
 const numbers = document.querySelector('.numbers');
 const operators = document.querySelector('.operators');
@@ -21,12 +22,13 @@ for (let i = 1; i < 10; i++) {
 
 numbers.addEventListener('click', (e) => {
   if (displayValue.length < displayValueLength
+    && e.target.localName == 'button'
     && e.target.textContent !== '=')
     {
+      console.log(e);
       displayValue += e.target.textContent;
       populateDisplay(displayValue)
     }
-  e.stopPropagation();
 })
 
 operators.addEventListener('click', (e) => {
