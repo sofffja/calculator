@@ -4,27 +4,30 @@ let secondNumber;
 let result;
 let displayValue = '';
 
-const numbersDiv = document.querySelector('.numbers');
-const operatorsDiv = document.querySelector('.operators');
+const numbers = document.querySelector('.numbers');
+const operators = document.querySelector('.operators');
 const display = document.querySelector('.display');
 const resultBtn = document.querySelector('.result');
 const clearBtn = document.querySelector('.clear');
 
 for (let i = 0; i < 10; i++) {
-  const newNumbersElement = document.createElement('button');
-  newNumbersElement.textContent = i;
-  numbersDiv.appendChild(newNumbersElement);
+  const newNumber = document.createElement('button');
+  newNumber.textContent = i;
+  numbers.appendChild(newNumber);
 }
 
-numbersDiv.addEventListener('click', (e) => {
+// EVENT LISTENERS
+
+numbers.addEventListener('click', (e) => {
   displayValue += e.target.textContent;
   populateDisplay(displayValue)
 })
 
-operatorsDiv.addEventListener('click', (e) => {
+operators.addEventListener('click', (e) => {
   operator = e.target.textContent;
   firstNumber = displayValue;
   displayValue = '';
+  console.log(firstNumber);
 })
 
 resultBtn.addEventListener('click', () => {
@@ -33,8 +36,13 @@ resultBtn.addEventListener('click', () => {
 
 clearBtn.addEventListener('click', clear);
 
+// FUNCTIONS
+
 function clear() {
   displayValue = '';
+  firstNumber = null;
+  secondNumber = null;
+  operator = null;
   populateDisplay(displayValue);
 }
 
@@ -45,10 +53,10 @@ function populateDisplay(content) {
 function callOperate() {
   secondNumber = displayValue;
   if (firstNumber && operator) {
-    console.log(`${firstNumber} ${operator} ${secondNumber}`)
     result = operate(+firstNumber, operator, +secondNumber);
-    populateDisplay(result);
-    displayValue = ''
+    displayValue = result;
+    populateDisplay(displayValue);
+    console.log(`${firstNumber} ${operator} ${secondNumber} = ${result}`);
   }
 }
 
