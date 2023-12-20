@@ -3,7 +3,7 @@ let operator;
 let secondNumber;
 let result;
 let displayValue = '';
-const displayValueLength = 23;
+const displayValueLength = 19;
 
 const numbers = document.querySelector('.numbers');
 const operators = document.querySelector('.operators');
