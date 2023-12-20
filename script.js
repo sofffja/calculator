@@ -1,12 +1,31 @@
 let firstNumber;
 let operator;
 let secondNumber;
+let displayValue = '';
 
-const uiNumbers = document.querySelector('.numbers');
+const numbersDiv = document.querySelector('.numbers');
+const operatorsDiv = document.querySelector('.operators');
+const display = document.querySelector('.display');
+const clearBtn = document.querySelector('.clear');
+const resultBtn = document.querySelector('.result');
+
 for (let i = 0; i < 10; i++) {
-  const newUiNumber = document.createElement('button');
-  newUiNumber.textContent = i;
-  uiNumbers.appendChild(newUiNumber);
+  const newNumbersElement = document.createElement('button');
+  newNumbersElement.textContent = i;
+  numbersDiv.appendChild(newNumbersElement);
+}
+
+numbersDiv.addEventListener('click', (e) => {
+  displayValue += e.target.textContent;
+  populateDisplay(displayValue)
+})
+
+operatorsDiv.addEventListener('click', (e) => {
+  operator = e.target.textContent;
+})
+
+function populateDisplay(content) {
+  display.textContent = content;
 }
 
 function operate(a, operator, b) {
