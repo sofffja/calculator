@@ -11,6 +11,8 @@
 }
 
 .display {
+  width: 225px;
+  text-align: right;
   border: 1px solid #bebebe;
   background-color: #eee;
   padding: 0.5rem;
