@@ -4,7 +4,6 @@ let secondNumber;
 let result;
 let displayValue = '';
 const displayValueLength = 19;
-let dotEnabled = true;
 
 const numbers = document.querySelector('.numbers');
 const operators = document.querySelector('.operators');
@@ -15,6 +14,7 @@ const clearBtn = document.querySelector('.clear');
 for (let i = 1; i < 10; i++) {
   const newNumber = document.createElement('button');
   newNumber.textContent = i;
+  newNumber.classList.add('number');
   numbers.appendChild(newNumber);
 }
 
@@ -23,13 +23,21 @@ for (let i = 1; i < 10; i++) {
 numbers.addEventListener('click', (e) => {
   if (displayValue.length < displayValueLength
     && e.target.localName == 'button'
-    && e.target.textContent !== '=')
+    && e.target.classList.contains('number')
+    )
     {
-      console.log(e);
       displayValue += e.target.textContent;
-      populateDisplay(displayValue)
-    }
+      populateDisplay(displayValue);
+  }
 })
+
+document.querySelector('.dot').addEventListener('click', (e) => {
+  if (displayValue.length < displayValueLength && !displayValue.includes('.')) {
+      displayValue += e.target.textContent;
+      populateDisplay(displayValue);
+  }
+})
+
 
 operators.addEventListener('click', (e) => {
   if (firstNumber) {
