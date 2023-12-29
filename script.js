@@ -22,9 +22,9 @@ for (let i = 1; i < 10; i++) {
 }
 
 // EVENT LISTENERS
-
 document.addEventListener('keypress', (e) => {
   e.preventDefault();
+
   if (displayValue.length < displayValueLength) {
     if (numberKeys.includes(e.key)) {
       displayValue += e.key;
@@ -121,6 +121,8 @@ function operate(a, operator, b) {
     case '-':
       return subtract(a, b);
     case 'x':
+      return multiply(a, b);
+    case '*':
       return multiply(a, b);
     case '/':
       return divide(a, b);
