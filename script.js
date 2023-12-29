@@ -30,9 +30,7 @@ document.addEventListener('keypress', (e) => {
       displayValue += e.key;
       populateDisplay(displayValue);
     } else if (operatorKeys.includes(e.key)) {
-      if (firstNumber) {
-        callOperate();
-      }
+      if (firstNumber) callOperate();
       operator = e.key;
       firstNumber = displayValue;
       displayValue = '';
@@ -65,11 +63,8 @@ document.querySelector('.dot').addEventListener('click', (e) => {
   }
 })
 
-
 operators.addEventListener('click', (e) => {
-  if (firstNumber) {
-    callOperate();
-  }
+  if (firstNumber) callOperate();
   operator = e.target.textContent;
   firstNumber = displayValue;
   displayValue = '';
@@ -82,7 +77,6 @@ resultBtn.addEventListener('click', () => {
 clearBtn.addEventListener('click', clear);
 
 // FUNCTIONS
-
 function clear() {
   displayValue = '';
   firstNumber = null;
@@ -107,9 +101,6 @@ function callOperate() {
     result = operate(+firstNumber, operator, +secondNumber);
     displayValue = result;
     populateDisplay(displayValue);
-
-    console.log(`${firstNumber} ${operator} ${secondNumber} = ${result}`);
-
     operator = null;
   }
 }
