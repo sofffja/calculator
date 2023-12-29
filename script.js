@@ -11,6 +11,9 @@ const display = document.querySelector('.display');
 const resultBtn = document.querySelector('.result');
 const clearBtn = document.querySelector('.clear');
 
+const numberKeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+const operatorKeys = ['+', '-', '*', '/'];
+
 for (let i = 1; i < 10; i++) {
   const newNumber = document.createElement('button');
   newNumber.textContent = i;
@@ -19,6 +22,30 @@ for (let i = 1; i < 10; i++) {
 }
 
 // EVENT LISTENERS
+
+document.addEventListener('keypress', (e) => {
+  e.preventDefault();
+  if (displayValue.length < displayValueLength) {
+    if (numberKeys.includes(e.key)) {
+      displayValue += e.key;
+      populateDisplay(displayValue);
+    } else if (operatorKeys.includes(e.key)) {
+      if (firstNumber) {
+        callOperate();
+      }
+      operator = e.key;
+      firstNumber = displayValue;
+      displayValue = '';
+    } else if (e.key === '.') {
+      if (!displayValue.includes('.')) {
+        displayValue += e.key;
+        populateDisplay(displayValue);
+      }
+    } else if (e.key === '=' || e.key === "Enter") {
+      callOperate();
+    }
+  }
+})
 
 numbers.addEventListener('click', (e) => {
   if (displayValue.length < displayValueLength
