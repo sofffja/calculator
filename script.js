@@ -10,6 +10,7 @@ const operators = document.querySelector('.operators');
 const display = document.querySelector('.display');
 const resultBtn = document.querySelector('.result');
 const clearBtn = document.querySelector('.clear');
+const dotBtn = document.querySelector('.dot');
 
 const numberKeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 const operatorKeys = ['+', '-', '*', '/'];
@@ -56,7 +57,7 @@ numbers.addEventListener('click', (e) => {
   }
 })
 
-document.querySelector('.dot').addEventListener('click', (e) => {
+dotBtn.addEventListener('click', (e) => {
   if (displayValue.length < displayValueLength && !displayValue.includes('.')) {
       displayValue += e.target.textContent;
       populateDisplay(displayValue);
